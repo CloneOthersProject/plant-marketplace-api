@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "a18eecb3-4e74-446b-bd92-07c179b2571a",
+		"name": "Plant Marketplace",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Plant",
+			"item": [
+				{
+					"name": "Fetch Plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/plant",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"plant"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "all",
+									"description": "Can be \"all\", \"unactive\" or \"active\" if you don't specify this it will put by default \"active\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Plant By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/plant/2a1c7a29-4741-4890-8749-d86c3708506e",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"plant",
+								"2a1c7a29-4741-4890-8749-d86c3708506e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Plant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "plantName",
+									"value": "Pino del bosque",
+									"description": "The name of the specific plant",
+									"type": "text"
+								},
+								{
+									"key": "imgUrl",
+									"value": "https://pino.com",
+									"description": "A valid URL for the image",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Un bonito pino de bosque",
+									"description": "The description of the specific plant",
+									"type": "text"
+								},
+								{
+									"key": "cuantity",
+									"value": "8",
+									"description": "The cuantity of this plant available",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "24.56",
+									"description": "The price of the specific plant",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "The status of the plant can be \"active\" or \"unactive\" [optional], by default \"active\"",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/plant",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"plant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Plant By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "plantName",
+									"value": "Cambio de nombre",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "imgUrl",
+									"value": "https://otherurl.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Otra descripcion",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cuantity",
+									"value": "98",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "54.23",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "unactive",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/plant/728b82ac-cdc9-4032-984a-b92d15cab0a6",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"plant",
+								"728b82ac-cdc9-4032-984a-b92d15cab0a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/plant/728b82ac-cdc9-4032-984a-b92d15cab0a6",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"plant",
+								"728b82ac-cdc9-4032-984a-b92d15cab0a6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

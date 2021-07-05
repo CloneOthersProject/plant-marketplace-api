@@ -1,73 +1,46 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Plant Marketplace
+This is a backend project made in ```NestJS``` with ```PostgreSQL``` as its main database and with ```Objection JS``` as its ORM.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
+#### Setup the database ```PostgreSQL```
+Before we start with the setup for the database is important to metion that the ORM works too with MySQL or another SQL database but in this case I configure some columns of the database with specific features of PostgreSQL.
+**For example:**
+- There's a ```migration``` called ```_extensions``` this migration has the purpose in this initial setup to create an extension for the ```uuid``` but in **MySQL** you will need to handle this uuid generation in the ```$beforeInsert``` of **ObjectionJS**\.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+#### First thing first
+You will need to create a ```.env``` file in the root of the project, you can base your template in this.
 
-## Description
+[Knex Home Page](https://knexjs.org/)
+```
+DATABASE_CLIENT=[Your database client you can check this in Knex Home Page that is upside this code block]
+DATABASE_HOST=[The host of the database]
+DATABASE_NAME=[The name of the database its important you to know this for the next step]
+DATABASE_PORT=[The port of the database]
+DATABASE_USER=[The user of the database]
+DATABASE_PASSWORD=[The password of the previous user of the database]
+DATABASE_MIGRATION_TABLE_NAME=knex_migrations [Don't change this value is for migrations]
+DATABASE_POOL_MIN=[The min connection pools]
+DATABASE_POOL_MAX=[The max connection pools]
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+API_VERSION=[The version of the API should be a numeric value]
+NODE_ENV=[The enviroment of the application]
+PORT=[The port to initialize the API should be a numeric value]
 ```
 
-## Running the app
+### Create the database
+We have a migrations functions that can handle the creation of the tables inside the database but its important to before run this scripts we have the database created, so for this you need the name of the database that you put in the ```.env``` and you can use both the **console** or the **PGAdmin 4**
+```CREATE DATABASE [database-name]```
 
-```bash
-# development
-$ npm run start
+### Runnning the migrations and seed
+You need to run the migrations to be able to see the database structure, and **optional** you can tun the seed scripts too.
+```
+// The order its important in this case cause you can run the seed without the structure of the database.
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+yarn db:migrate
+yarn db:seed // Optional
 ```
 
-## Test
+### Running the API
+After the previous configuration you can now run the API, and for that you only needs to run the command ```yarn start:dev``` or ```yarn start``` if you prefer.
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+>>> Now as exttra information you can look at ```http://localhost:[port-specified]/swagger``` to see the available endpoints or you can load the ```plant-marketplace-rest.json``` to a **Postman App** too.
